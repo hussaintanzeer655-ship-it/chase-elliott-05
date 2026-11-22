@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chase Elliott – Contact Card SPA</title>
+  <style>
+    :root{--bg:#0b0f14;--card:#141a21;--text:#eaf0f5;--muted:#a6b4c8;--accent:#ffd166}
+    *{box-sizing:border-box} html,body{margin:0;height:100%} body{font-family:Arial, sans-serif;background:linear-gradient(#0b0f14,#0a0e14);color:var(--text)} header{position:sticky;top:0;background:rgba(10,12,20,.9);border-bottom:1px solid #2a2a3a}
+    .wrap{max-width:860px;margin:0 auto;padding:14px}
+    nav{display:flex;gap:10px;justify-content:flex-start}
+    a{color:var(--text);text-decoration:none;padding:6px 10px;border-radius:6px}
+    a:hover{background:#1a2a40}
+    .layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:20px}
+    .card{background:var(--card);border-radius:12px;padding:20px}
+    h1{margin:0 0 6px;font-size:1.6rem}
+    input,textarea{width:100%;padding:10px;border-radius:6px;border:1px solid #334e75;background:#0e1622;color:#fff;margin:6px 0}
+    .btn{background:var(--accent);border:none;padding:10px 14px;border-radius:8px;font-weight:700}
+    @media (max-width: 700px){ .layout{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="brand">Chase Elliott</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#contact">Contact</a>
+        <a href="#demo">Demo</a>
+      </nav>
+    </div>
+  </header>
+  <main id="home" class="wrap">
+    <section class="layout" aria-label="Contact card">
+      <div class="card">
+        <h1>Contact Card</h1>
+        <p>Use this compact SPA to collect details. Built with vanilla HTML, CSS, and JS—no frameworks.</p>
+        <div id="status" style="margin-top:8px;color:#bfe3ff"></div>
+      </div>
+      <div class="card" aria-label="Form">
+        <form id="form" onsubmit="handleSubmit(event)">
+          <input placeholder="Name" required />
+          <input placeholder="Email" type="email" required />
+          <textarea placeholder="Message" rows="4" required></textarea>
+          <button class="btn" type="submit" style="margin-top:6px">Submit</button>
+        </form>
+      </div>
+    </section>
+    <section id="demo" class="wrap" style="padding-top:0">
+      <div class="card" aria-label="Demo panel" style="text-align:center">
+        <h2 style="margin:0 0 6px">Demo Interaction</h2>
+        <p style="color:var(--muted);">Click Submit to simulate sending data to a server.</p>
+        <button class="btn" onclick="alert('Pretend: Data sent!')">Simulate</button>
+      </div>
+    </section>
+  </main>
+  <script>
+    function handleSubmit(e){ e.preventDefault(); const s=document.getElementById('status'); s.textContent='Thanks! Your message has been queued.'; e.target.reset(); setTimeout(()=>{ s.textContent='Ready to send another message.'; },1200); }
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'}); }));
+  </script>
+</body>
+</html>
